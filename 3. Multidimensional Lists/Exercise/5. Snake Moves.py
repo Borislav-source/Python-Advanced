@@ -10,9 +10,10 @@ def matrix_generator(rows, columns, txt):
                 column.append(txt[c])
             else:
                 for ch in range(len(txt)):
-                    column.append(txt[ch])
+                    if len(column) < columns:
+                        column.append(txt[ch])
         the_matrix.append(column)
-        if columns < len(txt):
+        if columns < len(txt) or not columns % len(txt) == 0:
             difference = len(txt) - columns
             last = txt[-difference:]
             txt.clear()
