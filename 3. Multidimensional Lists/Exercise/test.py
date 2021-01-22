@@ -51,9 +51,16 @@
 #
 # print(counter)
 #
+#
+# nums = []
+# a = 5
+# b = 6
+# nums.append([a, b])
+# print(nums)
 
-nums = []
-a = 5
-b = 6
-nums.append([a, b])
-print(nums)
+a = [
+    [1, 2, 3, 4],
+    [5, 6, 7, 8]
+]
+a[1][0] += 1
+print(a)
