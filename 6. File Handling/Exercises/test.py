@@ -4,7 +4,7 @@ import os
 # except:
 #     file = open('text2.txt', 'w')
 # file.close()
-os.remove('text2.txt')
+# os.remove('text2.txt')
 
 
 # line = "-I was quick to judge him, but it wasn't his fault."
@@ -16,3 +16,9 @@ os.remove('text2.txt')
 # print(line)
 # for el in range(1, len(line) + 1):
 #     print(line[-el], end=' ')
+
+a = ['sdsd.py', 'fgfg.html', 'fdfg.txt']
+
+for el in a:
+    tail = os.path.splitext(el)
+    print(tail[1])
