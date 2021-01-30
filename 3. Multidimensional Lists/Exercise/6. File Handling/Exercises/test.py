@@ -17,9 +17,8 @@ import os
 # for el in range(1, len(line) + 1):
 #     print(line[-el], end=' ')
 
-# a = ['sdsd.py', 'fgfg.html', 'fdfg.txt']
-#
-# for el in a:
-#     tail = os.path.splitext(el)
-#     print(tail[1])
+a = ['sdsd.py', 'fgfg.html', 'fdfg.txt']
 
+for el in a:
+    tail = os.path.splitext(el)
+    print(tail[1])
