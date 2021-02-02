@@ -1,6 +1,6 @@
 import os
 
-directory = r''
+directory = r'input the directory path'
 files = {}
 for file_name in os.listdir(directory):
     tail = os.path.splitext(file_name.lower())
