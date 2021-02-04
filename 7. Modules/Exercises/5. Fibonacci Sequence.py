@@ -11,4 +11,3 @@ while not data == 'Stop':
     else:
         print(locate_num(str(num), sequence))
     data = input()
-    
