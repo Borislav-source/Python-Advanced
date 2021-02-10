@@ -23,12 +23,12 @@ def fill_the_board(board):
         for col in range(len(board[row])):
             counter = 0
             if board[row][col] is not '*':
-                counter = check_up(board, row, col, counter)
+                counter = check_for_bombs(board, row, col, counter)
                 board[row][col] = counter
     return board
 
 
-def check_up(board, row, col, count=0):
+def check_for_bombs(board, row, col, count=0):
     if row-1 in range(len(board)):
         if col-1 in range(len(board[row])):
             if board[row-1][col-1] == '*':
