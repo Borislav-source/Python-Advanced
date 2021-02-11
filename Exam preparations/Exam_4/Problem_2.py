@@ -1,23 +1,13 @@
 def board_generator():
-    rows_count = int(input())
-    board = [list(input()) for _ in range(rows_count)]
-    return board
-
-#
-# def commands_list():
-#     commands = []
-#     cmd = input()
-#     while cmd:
-#         commands.append(cmd)
-#         cmd = input()
-#     return commands
+    board = [list(input()) for _ in range(int(input()))]
+    return find_snake(board)
 
 
 def find_snake(board):
     for row in range(len(board)):
         for col in range(len(board[row])):
             if board[row][col] == 'S':
-                return row, col
+                return play(board, row, col, food=0)
 
 
 def validate(board, row, col):
@@ -33,8 +23,9 @@ def burrow_pass(board, row):
                 return r, c
 
 
-def play(board, srow, scol, commands, food):
-    for command in commands:
+def play(board, srow, scol, food):
+    while True:
+        command = input()
         if command == 'up':
             if validate(board, srow-1, scol):
                 board[srow][scol] = '.'
@@ -45,12 +36,12 @@ def play(board, srow, scol, commands, food):
                 elif board[srow][scol] == '*':
                     food += 1
                 board[srow][scol] = 'S'
-                if food == 10:
-                    return board, food
+                if food >= 10:
+                    return printing_results(board, food)
             else:
                 board[srow][scol] = '.'
-                return board, food
-        elif command == 'down':
+                return printing_results(board, food)
+        if command == 'down':
             if validate(board, srow+1, scol):
                 board[srow][scol] = '.'
                 srow += 1
@@ -60,12 +51,12 @@ def play(board, srow, scol, commands, food):
                 elif board[srow][scol] == '*':
                     food += 1
                 board[srow][scol] = 'S'
-                if food == 10:
-                    return board, food
+                if food >= 10:
+                    return printing_results(board, food)
             else:
                 board[srow][scol] = '.'
-                return board, food
-        elif command == 'left':
+                return printing_results(board, food)
+        if command == 'left':
             if validate(board, srow, scol-1):
                 board[srow][scol] = '.'
                 scol -= 1
@@ -75,12 +66,12 @@ def play(board, srow, scol, commands, food):
                 elif board[srow][scol] == '*':
                     food += 1
                 board[srow][scol] = 'S'
-                if food == 10:
-                    return board, food
+                if food >= 10:
+                    return printing_results(board, food)
             else:
                 board[srow][scol] = '.'
-                return board, food
-        elif command == 'right':
+                return printing_results(board, food)
+        if command == 'right':
             if validate(board, srow, scol+1):
                 board[srow][scol] = '.'
                 scol += 1
@@ -90,12 +81,11 @@ def play(board, srow, scol, commands, food):
                 elif board[srow][scol] == '*':
                     food += 1
                 board[srow][scol] = 'S'
-                if food == 10:
-                    return board, food
+                if food >= 10:
+                    return printing_results(board, food)
             else:
                 board[srow][scol] = '.'
-                return board, food
-    return board, food
+                return printing_results(board, food)
 
 
 def printing_results(board, food):
@@ -108,13 +98,4 @@ def printing_results(board, food):
         print(*board[row], sep='')
 
 
-eaten_food = 0
-matrix = board_generator()
-list_of_commands = []
-cmd = input()
-while cmd:
-    list_of_commands.append(cmd)
-    cmd = input()
-s_row, s_col = find_snake(matrix)
-matrix, eaten_food = play(matrix, s_row, s_col, list_of_commands, eaten_food)
-printing_results(matrix, eaten_food)
+board_generator()
