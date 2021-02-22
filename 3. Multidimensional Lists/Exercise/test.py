@@ -66,5 +66,102 @@
 # print(a)
 
 
-a = 2, 3
-print(a)
+# a = 2, 3
+# print(a)
+
+
+def play(board, moves, row, col, loose=False, final_coordinates=()):
+    for move in moves:
+        if not loose:
+            board[row][col] = '.'
+            if move == 'U':
+                if validate_move(board, row-1, col):
+                    if not board[row-1][col] == "B":
+                        board[row-1][col] = 'P'
+                        row -= 1
+                    else:
+                        loose = True
+                else:
+                    loose = True
+            elif move == 'D':
+                if validate_move(board, row+1, col):
+                    if not board[row+1][col] == "B":
+                        row += 1
+                        board[row+1][col] = 'P'
+                    else:
+                        loose = True
+                else:
+                    loose = True
+            elif move == 'L':
+                if validate_move(board, row, col-1):
+                    if not board[row][col-1] == "B":
+                        board[row][col-1] = 'P'
+                        col -= 1
+                    else:
+                        loose = True
+                else:
+                    loose = True
+            elif move == 'R':
+                if validate_move(board, row, col+1):
+                    if not board[row][col+1] == "B":
+                        board[row][col+1] = 'P'
+                        col += 1
+                    else:
+                        loose = True
+                else:
+                    loose = True
+            board, loose, final_coordinates = bunnies_spread(board)
+        else:
+            break
+    return board, loose, final_coordinates
+
+# for move in moves:
+#
+#     if not loose:
+
+
+def play(board, moves, row, col, loose=False, final_coordinates=()):
+    for move in moves:
+        board, loose, final_coordinates = bunnies_spread(board)
+        if not loose:
+            board[row][col] = '.'
+            final_coordinates = row, col
+            if move == 'U':
+                if validate_move(board, row-1, col):
+                    if not board[row-1][col] == "B":
+                        board[row-1][col] = 'P'
+                        row -= 1
+                    else:
+                        break
+                else:
+                    break
+            elif move == 'D':
+                if validate_move(board, row+1, col):
+                    if not board[row+1][col] == "B":
+                        row += 1
+                        board[row+1][col] = 'P'
+                    else:
+                        break
+                else:
+                    break
+            elif move == 'L':
+                if validate_move(board, row, col-1):
+                    if not board[row][col-1] == "B":
+                        board[row][col-1] = 'P'
+                        col -= 1
+                    else:
+                        break
+                else:
+                    break
+            elif move == 'R':
+                if validate_move(board, row, col+1):
+                    if not board[row][col+1] == "B":
+                        board[row][col+1] = 'P'
+                        col += 1
+                    else:
+                        break
+                else:
+                    break
+        else:
+            break
+    return board, loose, final_coordinates
