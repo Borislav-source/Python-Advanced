@@ -1,6 +1,6 @@
 import os
 
-directory = r'input the directory path'
+directory = r'C:\Users\Boby\Desktop\PycharmProjects\demo\4) OOP\1. Defining Classes\Exercises'
 files = {}
 for file_name in os.listdir(directory):
     tail = os.path.splitext(file_name.lower())
